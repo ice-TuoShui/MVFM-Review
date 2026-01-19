@@ -1,5 +1,3 @@
----
-
 ## Medical Vision Foundation Models: Method Summary Tables
 
 This repository contains structured summary tables of key methods in **Medical Vision Foundation Models (MVFMs)**, based on the comprehensive review paper *"Medical Vision Foundation Models: A Comprehensive Review from Technical Evolution to Clinical Translation"* (under review).
