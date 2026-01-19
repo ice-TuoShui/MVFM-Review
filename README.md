@@ -1,46 +1,165 @@
-# Medical Vision Foundation Models (MVFMs): A Comprehensive Review
+---
 
-[![GitHub Stars](https://img.shields.io/github/stars/ice-TuoShui/MVFM-Review?style=social)](https://github.com/ice-TuoShui/MVFM-Review) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Medical Vision Foundation Models: Method Summary Tables
 
-> **📚 综述 | 代码资源 | 持续更新**  
-> 本项目旨在系统梳理医学视觉基础模型的技术演进与临床转化，并配套维护一个高质量的开源方法及代码链接索引。
+This repository contains structured summary tables of key methods in **Medical Vision Foundation Models (MVFMs)**, based on the comprehensive review paper *"Medical Vision Foundation Models: A Comprehensive Review from Technical Evolution to Clinical Translation"* (under review).
+
+The following four tables categorize and summarize state-of-the-art approaches in medical vision foundation models, grouped by their core learning paradigms and adaptation strategies.
 
 ---
 
-## 📖 概述
-本文是一篇关于**医学视觉基础模型**的系统性综述论文。文章系统分析了从2019至2025年间该领域的137项核心研究，探讨了MVFMs的技术生命周期、数据基础设施，并从技术可靠性、临床整合与监管合规性等多个维度，深入剖析了其从实验室能力到临床现实所面临的“可信鸿沟”。
+## 📊 Table 1: Summary of Generative Learning Approaches
 
-**核心贡献：**
-1.  **系统性宏观分析**：绘制了该领域从探索、爆发到深化的三阶段发展轨迹。
-2.  **双维技术框架**：提出了统一的分析框架，涵盖“预训练范式”与“下游任务适应策略”。
-3.  **数据约束分析**：深入阐述了医学数据生态如何作为根本性约束塑造技术发展路径。
-4.  **临床可信鸿沟诊断**：首次系统剖析了阻碍临床转化的多维度障碍。
-5.  **未来路径前瞻**：提出了迈向“可信通用医学视觉智能”的四大演进路径。
+| Methods         | Research Questions | Pre-training | Adaptation | Backbone         | Modalities          | Downstream | Year | Code                                                     |
+| --------------- | ------------------ | ------------ | ---------- | ---------------- | ------------------- | ---------- | ---- | -------------------------------------------------------- |
+| Virchow         | FSL, DG, Interp.   | GL           | PEFT       | ViT              | Path.               | CLS        | 2024 |                                                          |
+| DINOv2          | FSL, DG            | GL           | PEFT       | ViT              | X-ray, CT, MRI      | CLS, SEG   | 2023 | [GitHub](https://github.com/facebookresearch/dinov2)     |
+| M4oE            | DG                 | GL           | FT         | SwinUNet         | CT, MRI             | SEG        | 2024 | [GitHub](https://github.com/csyfjiang/M4oE)              |
+| FedFMS          | DG                 | GL           | FT, PEFT   | ViT              | MRI, Path., Fundus  | SEG        | 2024 | [GitHub](https://github.com/LIU-YUXI/FedFMS)             |
+| MAISI           | FSL                | GL           | FT         | VAE-GAN, U-Net   | CT, MRI             | SEG        | 2025 | [GitHub](https://github.com/Ziwei-Niu/Maisi_Var)         |
+| GL-MAE          | DG                 | GL           | FT         | ViT              | CT, MRI             | SEG, CLS   | 2025 | [GitHub](https://github.com/JiaxinZhuang/GL-MAE)         |
+| SSFedMRI        | FSL, DG            | GL           | FT         | MoDL             | MRI                 | REC        | 2023 |                                                          |
+| MRM             | FSL                | GL           | FT         | ViT-B, SNN       | Fundus, Gen., Path. | CLS, SEG   | 2024 | [GitHub](https://github.com/CityU-AIM-Group/MRM)         |
+| EAGLE           | DG                 | GL           | FT         | ViT-g            | Path.               | CLS        | 2025 | [GitHub](https://github.com/chadvanderbilt/EAGLE)        |
+| Static DiMo     | Recon.             | GL           | -          | U-Net            | MRI                 | REC        | 2025 |                                                          |
+| Uni4Eye++       | FSL, DG, Cont.     | GL           | FT         | ViT              | Multimodal images   | CLS, SEG   | 2024 | [GitHub](https://github.com/Davidczy/Uni4Eye_pp)         |
+| USFM            | FSL, DG            | GL           | FT, PE     | Transformer      | US                  | Multi-task | 2024 |                                                          |
+| DeblurringMIM   | DG                 | GL           | FT         | ViT (MAE)        | US                  | CLS        | 2023 | [GitHub](https://github.com/MembrAI/DeblurringMIM)       |
+| GVSL            | FSL, DG            | GL           | FT         | 3D U-Net         | CT, MRI             | SEG, CLS   | 2023 | [GitHub](https://github.com/YutingHe-list/GVSL)          |
+| MIS-FM          | FSL, DG            | GL           | FT         | PCT-Net          | CT                  | SEG        | 2023 | [GitHub](https://github.com/openmedlab/MIS-FM)           |
+| RETFound        | FSL, Interp.       | GL           | FT         | ViT-large (MAE)  | CFP, OCT            | CLS        | 2023 | [GitHub](https://github.com/rmaphoh/RETFound)            |
+| ModelsGenesis   | SSL                | GL           | FT         | U-Net, ResNet    | Multimodal images   | SEG, CLS   | 2019 | [GitHub](https://github.com/MrGiovanni/ModelsGenesis)    |
+| SelfMedMAE      | FSL, DG            | GL           | FT         | ViT (MAE)        | X-ray, CT, MRI      | CLS, SEG   | 2022 | [GitHub](https://github.com/cvlab-stonybrook/SelfMedMAE) |
+| VIS-MAE         | DG, Label Eff.     | GL           | FT         | Swin Transformer | Multimodal images   | SEG, CLS   | 2025 | [GitHub](https://github.com/lzl199704/VIS-MAE)           |
+| Swin-UMamba†    | FSL                | GL           | FT         | Mamba            | MRI, Endo., Micro.  | SEG        | 2025 | [GitHub](https://github.com/JiarunLiu/Swin-UMamba)       |
+| DenseFormer-MoE | DG                 | GL           | FT         | DenseNet, ViT    | sMRI                | CLS, REG   | 2025 |                                                          |
 
-## 🗂️ 资源索引：医学视觉基础模型方法与代码
-这是本项目的核心价值之一。我们持续收集、筛选并整理了数十个高质量的医学视觉基础模型（VFM）开源实现、预训练权重及官方代码库链接。
+---
 
-**索引原则**：收录的项目均在论文中有所提及或评估，确保与综述内容强相关，并优先选择维护活跃、复现性好的资源。
+## 📊 Table 2: Summary of Contrastive Learning Approaches
 
-| 模型/框架名称 | 核心论文/出处 | 官方/推荐代码链接 | 预训练权重 | 备注 (特点/任务) |
-| :--- | :--- | :--- | :--- | :--- |
-| **ViS-MAE** | *An Efficient Self-supervised Learning Approach...* | [GitHub Link](https://github.com/xxx) | Available | 多模态（CT, MRI, X-ray等）生成式预训练 |
-| **CTransPath** | *A foundation model for clinical-grade...* | [GitHub Link](https://github.com/xxx) | Available | 病理学基础模型，3亿patch预训练 |
-| **UNETR** | *Transformers for 3D Medical Image Segmentation* | [GitHub Link](https://github.com/xxx) | Available | 基于Transformer的3D医学图像分割 |
-| **MedSAM** | *Segment anything in medical images* | [GitHub Link](https://github.com/xxx) | Available | 医学图像分割通用适配模型 |
-| **STU-Net** | *Scalable and Transferable Medical Image...* | [GitHub Link](https://github.com/xxx) | Available | 大规模有监督预训练的分割模型 |
-| **UniverSeg** | *Universal Medical Image Segmentation* | [GitHub Link](https://github.com/xxx) | Available | 基于上下文的通用医学图像分割 |
-| **[其他模型名]** | *[对应论文]* | [GitHub Link]() | - | *[补充说明]* |
-*（请用你收集的实际信息填充此表格，此表格可随收藏增加而扩展）*
+| Methods                     | Research Questions | Pre-training | Adaptation | Backbone         | Modalities        | Downstream | Year | Code                                                                                      |
+| --------------------------- | ------------------ | ------------ | ---------- | ---------------- | ----------------- | ---------- | ---- | ----------------------------------------------------------------------------------------- |
+| BrainIAC                    | FSL, DG            | CL           | FT         | ResNet50         | MRI               | CLS, REC   | 2024 | [GitHub](https://github.com/AIM-KannLab/BrainIAC)                                         |
+| CIA-Net                     | FSL                | CL           | FT         | ResNet           | X-ray             | CLS, DET   | 2019 |                                                                                           |
+| ClinicalContrastiveLearning | FSL                | CL           | FT         | ResNet           | OCT               | CLS        | 2023 |                                                                                           |
+| SSRDL                       | FSL                | CL           | FT         | ViT (DINO)       | Path.             | CLS        | 2025 | [GitHub](https://github.com/lazytkm/SSRDL)                                                |
+| SAM                         | FSL, Interp.       | CL           | PE         | ResNet, FPN      | CT, X-ray         | Multi-task | 2022 | [GitHub](https://github.com/alibaba-damo-academy/self-supervised-anatomical-embedding-v2) |
+| DINOv2-ALPNet               | FSL                | CL           | FT, PEFT   | ViT (DINOv2)     | CT, MRI           | SEG        | 2024 | [GitHub](https://github.com/levayz/DINOv2-based-Self-Supervised-Learning)                 |
+| ViT-3D-Med                  | FSL, Interp.       | CL           | FT         | ViT (DeiT-S)     | CT                | CLS        | 2022 |                                                                                           |
+| Adam                        | FSL, Interp.       | CL           | FT         | ResNet           | X-ray, Fundus     | Multi-task | 2023 | [GitHub](https://github.com/MR-HosseinzadehTaher/Eden)                                    |
+| UNI                         | FSL, DG, Interp.   | CL           | PEFT       | ViT-L            | Path.             | Multi-task | 2024 | [GitHub](https://github.com/mahmoodlab/UNI)                                               |
+| PDCR-UAFR                   | FSL, Interp.       | CL           | FT         | DeepLabV3+       | Multimodal images | SEG        | 2022 | [GitHub](https://github.com/lzh19961031/PDCR_UAFR-MIS)                                    |
+| LVM-Med                     | DG                 | CL           | FT, PE     | ResNet, ViT      | Multimodal images | Multi-task | 2023 | [GitHub](https://github.com/duyhominhnguyen/LVM-Med)                                      |
+| BROW                        | FSL, DE-Adapt.     | CL           | PEFT       | ViT              | Path.             | CLS, SEG   | 2023 | [GitHub](https://github.com/openmedlab/BROW)                                              |
+| Endo-FM                     | DG                 | CL           | FT         | Transformer      | Endo. Vid.        | Multi-task | 2023 | [GitHub](https://github.com/openmedlab/Endo-FM)                                           |
+| Virchow                     | FSL, DG            | CL           | PEFT       | ViT (DINOv2)     | Path.             | CLS        | 2024 |                                                                                           |
+| MedLSAM                     | FSL                | CL           | PE         | CNN, ViT         | CT                | DET, SEG   | 2025 | [GitHub](https://github.com/openmedlab/MedLSAM)                                           |
+| MoCo-CXR                    | FSL                | CL           | FT         | ResNet, DenseNet | X-ray             | CLS        | 2021 | [GitHub](https://github.com/stanfordmlgroup/MoCo-CXR)                                     |
+| RudolfV                     | FSL, DG            | CL           | FT, PEFT   | ViT (DINOv2)     | Path.             | Multi-task | 2024 |                                                                                           |
+| SimCLR                      | FSL                | CL           | FT         | ResNet           | Nat. Img.         | CLS        | 2020 | [GitHub](https://github.com/google-research/simclr)                                       |
+| CTransPath                  | DG, Interp.        | CL           | PEFT, FT   | Swin Transformer | Path.             | Multi-task | 2022 | [GitHub](https://github.com/Xiyue-Wang/TransPath)                                         |
 
-## 📄 论文内容
-- **最新版手稿**：[`MVFM-Review_Manuscript.pdf`](MVFM-Review_Manuscript.pdf) - 你可以直接下载阅读。
-- **预印本**：[arXiv:xxxx.xxxxx](https://arxiv.org/abs/xxxx.xxxxx) *（投稿后可补充链接）*
-- **引用信息**（BibTeX）:
-```bibtex
-@article{lin2025medical,
-  title={Medical Vision Foundation Models: A Comprehensive Review from Technical Evolution to Clinical Translation},
-  author={Lin, Nengjian},
-  journal={IEEE Transactions on Medical Imaging (Under Review)},
-  year={2025}
-}
+---
+
+## 📊 Table 3: Summary of Hybrid and Supervised Learning Approaches
+
+| Methods            | Research Questions | Pre-training | Adaptation | Backbone         | Modalities        | Downstream | Year | Code                                                    |
+| ------------------ | ------------------ | ------------ | ---------- | ---------------- | ----------------- | ---------- | ---- | ------------------------------------------------------- |
+| HeadCT-Foundation  | FSL, DG, Interp.   | HL           | FT         | ViT-3D           | CT                | CLS        | 2025 | [GitHub](https://github.com/NYUMedML/headCT_foundation) |
+| MedicalTransformer | FSL                | HL           | FT         | ResNet           | MRI               | Multi-task | 2023 | [GitHub](https://github.com/ejjun92/MedicalTransformer) |
+| TransVW            | FSL                | HL           | FT         | U-Net, ResNet    | CT, X-ray         | CLS, SEG   | 2021 | [GitHub](https://github.com/fhaghighi/TransVW)          |
+| PCRL               | FSL, DG            | HL           | FT         | U-Net            | XR, CT, MRI       | SEG, CLS   | 2021 | [GitHub](https://github.com/Luchixiang/PCRL)            |
+| DSMT-Net           | FSL, DG, Interp.   | HL           | FT         | ViT              | Endo.             | Multi-task | 2024 | [GitHub](https://github.com/Torchlight-ljj/DSMT-Net)    |
+| TITAN              | FSL, DG            | HL           | -          | ViT (ALiBi)      | Path. WSI, Text   | Multi-task | 2025 | [GitHub](https://github.com/mahmoodlab/TITAN)           |
+| Alice              | DG, Interp.        | HL           | FT         | ViT              | CT                | SEG, CLS   | 2023 | [GitHub](https://github.com/alibaba-damo-academy/alice) |
+| UniMiSS+           | DG                 | HL           | FT         | MiT, MedT        | CT, X-ray         | SEG, CLS   | 2024 | [GitHub](https://github.com/YtongXie/UniMiSS-code)      |
+| CADS               | DG                 | HL           | FT         | PVT-Unet         | CT, X-ray         | SEG        | 2025 | [GitHub](https://github.com/yeerwen/CADS)               |
+| SegVol             | FSL, Interp.       | HL           | FT, PE     | 3D ViT           | CT, MRI           | SEG        | 2023 | [GitHub](https://github.com/BAAI-DCAI/SegVol)           |
+| Swin UNETR         | FSL, DG            | HL           | FT         | Swin Transformer | CT                | SEG        | 2022 | [GitHub](https://github.com/LeonidAlekseev/Swin-UNETR)  |
+| GATE               | FSL, Interp.       | SL           | FT         | GCN              | fMRI              | CLS        | 2023 | [GitHub](https://github.com/LarryUESTC/GATE)            |
+| HGFM               | FSL, Interp.       | SL           | FT         | HGNN             | fMRI              | CLS        | 2025 |                                                         |
+| STU-Net            | Generalizab.       | SL           | FT         | U-Net            | CT, MRI, PET      | SEG        | 2023 | [GitHub](https://github.com/uni-medical/STU-Net)        |
+| VisionFM           | FSL, DG            | SL           | PEFT       | Transformer      | Multimodal Ophth. | Multi-task | 2024 |                                                         |
+| Med3D              | FSL, DG            | SL           | FT         | ResNet           | CT, MRI           | SEG, CLS   | 2019 | [GitHub](https://github.com/Tencent/MedicalNet)         |
+
+---
+
+## 📊 Table 4: Summary of Prompt-Driven Foundation Models
+
+| Methods        | Research Questions | Pre-training | Adaptation | Backbone       | Modalities         | Downstream | Year | Code                                                        |
+| -------------- | ------------------ | ------------ | ---------- | -------------- | ------------------ | ---------- | ---- | ----------------------------------------------------------- |
+| KnowSAM        | FSL, SSL           | PD           | PEFT       | U-Net, V-Net   | Multimodal images  | SEG        | 2025 | [GitHub](https://github.com/taozh2017/KnowSAM)              |
+| VerSemi        | FSL, SSL           | PD           | FT         | V-Net          | CT, MRI            | SEG        | 2025 | [GitHub](https://github.com/maxwell0027/VerSemi)            |
+| AdaptiveSAM    | FSL, DG, Interp.   | PD           | PEFT       | ViT (SAM)      | Surg. Vid., US, XR | SEG        | 2023 | [GitHub](https://github.com/JayParanjape/biastuning)        |
+| SegmentAnyBone | FSL, DG            | PD           | PEFT       | ViT (SAM)      | MRI                | SEG        | 2024 | [GitHub](https://github.com/mazurowski-lab/SegmentAnyBone)  |
+| SurgicalSAM    | DG, PS             | PD, CL       | PEFT       | ViT (SAM)      | Endo.              | SEG        | 2023 | [GitHub](https://github.com/wenxi-yue/SurgicalSAM)          |
+| SAM-LoRA       | FSL                | PD           | PEFT       | ViT-Base (SAM) | MRI, CT            | SEG        | 2024 |                                                             |
+| DeSAM          | DG                 | PD           | PEFT       | SAM, ViT-H     | CT, MRI            | SEG        | 2024 | [GitHub](https://github.com/yifangao112/DeSAM)              |
+| SAMM           | DG                 | PD           | PE         | ViT (SAM)      | CT, MRI, US        | SEG        | 2024 | [GitHub](https://github.com/bingogome/samm)                 |
+| SAM-Path       | DG                 | PD, CL       | FT, PE     | ViT, ViT-Small | Path.              | SEG        | 2023 | [GitHub](https://github.com/cvlab-stonybrook/SAMPath)       |
+| SAMed          | DG                 | PD           | PEFT       | ViT (SAM)      | CT                 | SEG        | 2023 | [GitHub](https://github.com/hitachinsk/SAMed)               |
+| nnSAM          | FSL                | PD           | FT         | ViT, nnUNet    | CT, MRI, X-ray     | SEG        | 2024 | [GitHub](https://github.com/Kent0n-Li/nnSAM)                |
+| SAMAug         | DG                 | PD           | -          | ViT, CNN-based | Endo., Path.       | SEG        | 2023 | [GitHub](https://github.com/yhydhx/SAMAug)                  |
+| AutoSAM        | DG                 | PD           | PE         | ViT, H-Dense   | Path., Endo.       | SEG        | 2023 | [GitHub](https://github.com/talshaharabany/AutoSAM)         |
+| MSA            | DG                 | PD           | PEFT       | ViT (SAM)      | Multimodal images  | SEG        | 2025 | [GitHub](https://github.com/ImprintLab/Medical-SAM-Adapter) |
+| MA-SAM         | FSL, DG            | PD           | PEFT       | ViT (SAM)      | Multimodal image   | SEG        | 2024 | [GitHub](https://github.com/cchen-cc/MA-SAM)                |
+| SAM-Med2D      | DG                 | PD           | FT         | ViT (SAM)      | Multimodal images  | SEG        | 2023 | [GitHub](https://github.com/OpenGVLab/SAM-Med2D)            |
+| AFTer-SAM      | DG                 | PD           | PEFT       | ViT (SAM)      | CT                 | SEG        | 2024 |                                                             |
+| 3DSAM-adapter  | DG                 | PD           | PEFT       | ViT (SAM)      | CT                 | SEG        | 2023 | [GitHub](https://github.com/med-air/3DSAM-adapter)          |
+| ProMISe        | FSL, DG            | PD           | PEFT, PE   | ViT (SAM), CNN | CT                 | SEG        | 2024 | [GitHub](https://github.com/MedICL-VU/ProMISe)              |
+| CellSAM        | FSL, DG            | PD           | PEFT       | ViT (SAM)      | Multimodal images  | SEG        | 2025 | [GitHub](https://github.com/vanvalenlab/cellSAM)            |
+| MVG            | FSL, DG            | PD, GL       | PE         | ViT            | Multimodal images  | SEG        | 2024 | [GitHub](https://github.com/OliverRensu/MVG)                |
+| VISTA3D        | FSL, DG            | PD, SL       | FT         | SegResNet      | CT                 | SEG        | 2025 | [GitHub](https://github.com/Project-MONAI/VISTA)            |
+| UniverSeg      | FSL, DG            | PD, SL       | PE         | U-Net          | Multimodal images  | SEG        | 2023 | [GitHub](https://github.com/JJGO/UniverSeg)                 |
+
+---
+
+## 📌 Abbreviation Key
+
+| Abbreviation | Meaning                         |
+| ------------ | ------------------------------- |
+| FSL          | Few-Shot Learning               |
+| DG           | Domain Generalization           |
+| Interp.      | Interpretability                |
+| SSL          | Self-Supervised Learning        |
+| GL           | Generative Learning             |
+| CL           | Contrastive Learning            |
+| HL           | Hybrid Learning                 |
+| SL           | Supervised Learning             |
+| PD           | Prompt-Driven                   |
+| PEFT         | Parameter-Efficient Fine-Tuning |
+| FT           | Full Fine-Tuning                |
+| PE           | Prompt Engineering              |
+| Path.        | Pathology                       |
+| Endo.        | Endoscopy                       |
+| US           | Ultrasound                      |
+| OCT          | Optical Coherence Tomography    |
+| CFP          | Color Fundus Photography        |
+| sMRI         | structural MRI                  |
+| WSI          | Whole Slide Image               |
+| fMRI         | functional MRI                  |
+| CLS          | Classification                  |
+| SEG          | Segmentation                    |
+| REC          | Reconstruction                  |
+| REG          | Registration                    |
+| DET          | Detection                       |
+| Cont.        | Continual Learning              |
+| Label Eff.   | Label Efficiency                |
+| DE-Adapt.    | Data-efficient Adaptation       |
+| Surg. Vid.   | Surgical Video                  |
+| Nat. Img.    | Natural Images                  |
+| Gen.         | Genetics                        |
+| Micro.       | Microscopy                      |
+
+---
+
+## 📚 About
+
+This collection is part of the ongoing review:  
+**Medical Vision Foundation Models: A Comprehensive Review from Technical Evolution to Clinical Translation**  
+_(Currently under review)_
+
+Maintained by: [Nengjian Lin et al.](https://github.com/ice-TuoShui/MVFM-Review)
+
+---
